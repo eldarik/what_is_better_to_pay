@@ -14,13 +14,17 @@ defmodule WhatIsBetterToPay.Services.GoogleDocs do
         body
       _ ->
         Logger.log :warn, "Raised error while fetching document: #{link}"
+        nil
     end
   end
 
   defp parse_document_id(link) do
-    [_, id] = Regex.run(@document_id_regex, link)
-
-    id
+    case Regex.run(@document_id_regex, link) do
+      [_, id] ->
+        id
+      _ ->
+        nil
+    end
   end
 
   defp wrap_for_download(id) do

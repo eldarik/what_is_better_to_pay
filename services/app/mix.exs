@@ -22,7 +22,8 @@ defmodule WhatIsBetterToPay.MixFile do
     [
       {:nadia, "~> 0.4.1"},
       {:poison, "~> 3.1"},
-      {:httpoison, "~> 1.5.1"}
+      {:httpoison, "~> 1.5.1"},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 end
