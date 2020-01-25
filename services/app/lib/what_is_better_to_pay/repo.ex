@@ -1,3 +1,5 @@
 defmodule WhatIsBetterToPay.Repo do
-  use Ecto.Repo, otp_app: :what_is_better_to_pay
+  use Ecto.Repo,
+    otp_app: :what_is_better_to_pay,
+    adapter: Ecto.Adapters.Postgres
 end

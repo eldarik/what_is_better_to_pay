@@ -25,7 +25,7 @@ defmodule WhatIsBetterToPay.MixFile do
       {:poison, "~> 3.1"},
       {:httpoison, "~> 1.5.1"},
       {:mock, "~> 0.3.0", only: :test},
-      {:ecto, "~> 3.0"}, {:postgrex, ">= 0.0.0"}
+      {:ecto_sql, "~> 3.2"}, {:postgrex, ">= 0.0.0"}
     ]
   end
 end
