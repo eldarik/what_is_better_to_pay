@@ -23,14 +23,15 @@ defmodule WhatIsBetterToPay do
 
     children = [
       worker(WhatIsBetterToPay.Poller, []),
-      worker(WhatIsBetterToPay.Matcher, [])
+      worker(WhatIsBetterToPay.Matcher, []),
+      supervisor(WhatIsBetterToPay.Repo, [])
     ]
 
     opts = [
       strategy: :one_for_one,
       name: WhatIsBetterToPay.Supervisor
     ]
-    Supervisor.start_link children, opts
+    Supervisor.start_link(children, opts)
   end
 
 end

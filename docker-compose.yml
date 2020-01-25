@@ -10,3 +10,13 @@ services:
       - "./services/app:/usr/src/app:delegated"
       - "~/.bash_history:/root/.bash_history:delegated"
       - "~/.bashrc:/root/.bashrc:delegated"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
