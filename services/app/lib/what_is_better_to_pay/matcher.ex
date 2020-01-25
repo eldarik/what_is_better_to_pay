@@ -12,7 +12,7 @@ defmodule WhatIsBetterToPay.Matcher do
   end
 
   def handle_cast(message, state) do
-    # Commands.match_message message
+    WhatIsBetterToPay.Commands.match_message message
 
     {:noreply, state}
   end

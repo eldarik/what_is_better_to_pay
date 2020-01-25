@@ -59,8 +59,7 @@ defmodule WhatIsBetterToPay.Poller do
   defp process_message(nil), do: IO.puts "nil"
   defp process_message(message) do
     try do
-      # App.Matcher.match message
-      Logger.log :warn, "#{Poison.encode! message}"
+      WhatIsBetterToPay.Matcher.match message
     rescue
       err in MatchError ->
         Logger.log :warn, "Errored with #{err} at #{Poison.encode! message}"
