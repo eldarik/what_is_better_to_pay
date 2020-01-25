@@ -21,7 +21,8 @@ defmodule WhatIsBetterToPay.MixFile do
   defp deps do
     [
       {:nadia, "~> 0.4.1"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:httpoison, "~> 1.5.1"}
     ]
   end
 end
