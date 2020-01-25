@@ -13,13 +13,15 @@ defmodule WhatIsBetterToPay.MixFile do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :nadia],
+      mod: {WhatIsBetterToPay, []}
     ]
   end
 
   defp deps do
     [
-      {:nadia, "~> 0.4.1"}
+      {:nadia, "~> 0.4.1"},
+      {:poison, "~> 3.1"}
     ]
   end
 end

@@ -1,7 +1,7 @@
 use Mix.Config
 
 
-config :app,
+config :what_is_better_to_pay,
   bot_name: System.get_env("TELEGRAM_BOT_NAME")
 
 config :nadia,
