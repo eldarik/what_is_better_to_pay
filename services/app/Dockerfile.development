@@ -1,0 +1,10 @@
+FROM elixir:1.9
+
+ENV PROJECT_ROOT /usr/src/app
+
+# Install hex (Elixir package manager)
+# Install rebar (Erlang build tool)
+RUN mix local.hex --force \
+ && mix local.rebar --force
+
+WORKDIR $PROJECT_ROOT

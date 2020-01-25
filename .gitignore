@@ -1,0 +1,10 @@
+*.swo
+*.swp
+
+.env
+
+tmp/
+!tmp/.keep
+
+services/app/_build
+services/app/deps
