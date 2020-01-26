@@ -18,6 +18,10 @@ defmodule WhatIsBetterToPay.Services.GoogleDocs do
     end
   end
 
+  def valid_link?(link) do
+    parse_document_id(link) != nil
+  end
+
   defp parse_document_id(link) do
     case Regex.run(@document_id_regex, link) do
       [_, id] ->

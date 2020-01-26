@@ -32,4 +32,16 @@ defmodule WhatIsBetterToPay.Services.GoogleDocsTest do
       end
     end
   end
+
+  describe "#valid_link?" do
+    @link "https://docs.google.com/spreadsheets/d/foobar/editblahblah"
+
+    test "returns true when link is valid" do
+      assert GoogleDocs.valid_link?(@link) == true
+    end
+
+    test "returns false when link is valid" do
+      assert GoogleDocs.valid_link?("foobar") == false
+    end
+  end
 end
