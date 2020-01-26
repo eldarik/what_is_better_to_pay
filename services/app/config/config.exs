@@ -13,3 +13,5 @@ config :what_is_better_to_pay, WhatIsBetterToPay.Repo,
 
 config :nadia,
   token: System.get_env("TELEGRAM_BOT_TOKEN")
+
+import_config "#{Mix.env()}.exs"
