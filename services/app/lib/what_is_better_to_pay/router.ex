@@ -11,6 +11,7 @@ defmodule WhatIsBetterToPay.Router do
       def match_message(message) do
         try do
           apply __MODULE__, :do_match_message, [message]
+          Logger.log :info, "message: #{Poison.encode! message}"
         rescue
           err in FunctionClauseError ->
             Logger.log :warn, """
