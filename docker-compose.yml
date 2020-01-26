@@ -5,6 +5,7 @@ services:
     build:
       context: services/app/
       dockerfile: Dockerfile.development
+    privileged: true
     env_file: .env
     volumes:
       - "./services/app:/usr/src/app:delegated"
