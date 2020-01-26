@@ -116,6 +116,19 @@ defmodule WhatIsBetterToPay.Router do
     end
   end
 
+  def generate_location_query(handler) do
+    quote do
+      def do_match_message(%{
+        message: %{
+          location: %{longitude: _, latitude: _}
+        }
+      } = var!(update)) do
+        Logger.log :info, "location handler"
+        handle_message unquote(handler), [var!(update)]
+      end
+    end
+  end
+
   # Receiver Macros
 
   ## Match All
@@ -210,6 +223,12 @@ defmodule WhatIsBetterToPay.Router do
     generate_callback_query_command(command, {module, function})
   end
 
+  ## Location
+
+  defmacro location_query(module, function) do
+    generate_location_query({module, function})
+  end
+
   # Helpers
 
   def handle_message({module, function}, update)
@@ -225,7 +244,7 @@ defmodule WhatIsBetterToPay.Router do
     end
   end
 
-  def handle_message(function, update)
+  def handle_message(function, _update)
   when is_function(function) do
     Task.start fn ->
       function.()
