@@ -8,3 +8,5 @@ tmp/
 
 services/app/_build
 services/app/deps
+services/app/.hex/
+services/app/.mix/

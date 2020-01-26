@@ -8,8 +8,8 @@ services:
     env_file: .env
     volumes:
       - "./services/app:/usr/src/app:delegated"
-      - "~/.bash_history:/root/.bash_history:delegated"
-      - "~/.bashrc:/root/.bashrc:delegated"
+      - "~/.bash_history:/.bash_history:delegated"
+      - "~/.bashrc:/.bashrc:delegated"
     depends_on:
       - db
 
