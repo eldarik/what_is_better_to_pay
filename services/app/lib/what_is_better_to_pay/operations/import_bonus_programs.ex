@@ -56,7 +56,9 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
   end
 
   defp create_new_bonus_programs(user, document_data) do
+    # NOTE: first row with headers should be skipped
     document_data
+    |> Enum.drop(1)
     |> Enum.each(fn(row) -> create_new_bonus_program(user, row) end)
   end
 

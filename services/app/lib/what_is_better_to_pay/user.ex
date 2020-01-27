@@ -22,6 +22,7 @@ defmodule WhatIsBetterToPay.User do
       :last_name,
     ])
     |> validate_required([:username, :telegram_id])
+    |> unique_constraint(:username)
   end
 
   def settings_changeset(object, params \\ %{}) do

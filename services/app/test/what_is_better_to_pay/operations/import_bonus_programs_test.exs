@@ -1,10 +1,10 @@
 defmodule WhatIsBetterToPay.Operations.ImportBonusProgramsTest do
-  use ExUnit.Case
+  use WhatIsBetterToPay.RepoCase
   alias WhatIsBetterToPay.Operations.ImportBonusPrograms
   alias WhatIsBetterToPay.Repo
   alias WhatIsBetterToPay.User
 
-  describe "#execute" do
+  describe "execute" do
     @params %{
       username: "foobar",
       first_name: "Foo",

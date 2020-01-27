@@ -4,7 +4,7 @@ defmodule WhatIsBetterToPay.Services.GoogleDocsTest do
   import Mock
   alias WhatIsBetterToPay.Services.GoogleDocs
 
-  describe "#fetch_document" do
+  describe "fetch_document" do
     @link "https://docs.google.com/spreadsheets/d/foobar/editblahblah"
 
     test "returns document body" do
@@ -33,7 +33,7 @@ defmodule WhatIsBetterToPay.Services.GoogleDocsTest do
     end
   end
 
-  describe "#valid_link?" do
+  describe "valid_link?" do
     @link "https://docs.google.com/spreadsheets/d/foobar/editblahblah"
 
     test "returns true when link is valid" do

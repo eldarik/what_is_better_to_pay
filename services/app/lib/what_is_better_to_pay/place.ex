@@ -15,6 +15,7 @@ defmodule WhatIsBetterToPay.Place do
     struct
     |> cast(params, [:title, :category_id])
     |> validate_required([:title, :category_id])
+    |> unique_constraint(:title)
   end
 
   def settings_changeset(object, params \\ %{}) do
