@@ -14,4 +14,8 @@ config :what_is_better_to_pay, WhatIsBetterToPay.Repo,
 config :nadia,
   token: System.get_env("TELEGRAM_BOT_TOKEN")
 
+config :google_maps,
+  api_key: System.get_env("GOOGLE_API_KEY"),
+  requester: HTTPoison
+
 import_config "#{Mix.env()}.exs"

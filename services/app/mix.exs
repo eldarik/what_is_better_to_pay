@@ -27,7 +27,8 @@ defmodule WhatIsBetterToPay.MixFile do
       {:httpoison, "~> 1.5.1"},
       {:mock, "~> 0.3.0", only: :test},
       {:ecto_sql, "~> 3.2"}, {:postgrex, ">= 0.0.0"},
-      {:csv, "~> 2.3"}
+      {:csv, "~> 2.3"},
+      {:google_maps, "~> 0.11"}
     ]
   end
 
