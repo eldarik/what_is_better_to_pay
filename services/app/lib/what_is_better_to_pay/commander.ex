@@ -164,4 +164,28 @@ defmodule WhatIsBetterToPay.Commander do
       end
     end
   end
+
+  defmacro user_data do
+    quote do
+      case var!(update) do
+        %{
+          message: %{
+            from: %{
+              username: username,
+              first_name: first_name,
+              last_name: last_name,
+              id: telegram_id
+            }
+          }
+        } ->
+          %{
+            username: username,
+            first_name: first_name,
+            last_name: last_name,
+            telegram_id: telegram_id |> Integer.to_string
+          }
+        _ -> raise "Can't get user_data"
+      end
+    end
+  end
 end
