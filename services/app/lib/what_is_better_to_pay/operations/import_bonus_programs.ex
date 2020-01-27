@@ -1,10 +1,9 @@
 defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
-  import Ecto.Query
+  import Ecto.Query, only: [from: 2]
   alias WhatIsBetterToPay.{Repo, User, BonusProgram}
   alias WhatIsBetterToPay.Operations.CreateBonusProgram
 
-  def execute(params) do
-    %{link: link} = params
+  def execute(%{link: link} = params) do
     user = find_or_create_user(params)
     document_data = fetch_document(link)
     archive_previous_bonus_programs(user)
@@ -12,11 +11,8 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
     {:ok}
   end
 
-  defp google_docs_api do
-    Application.get_env(:what_is_better_to_pay, :google_docs_api)
-  end
-
   defp fetch_document(link) do
+    google_docs_api = Application.get_env(:what_is_better_to_pay, :google_docs_api)
     {:ok, csv} = google_docs_api.fetch_document(link) |> StringIO.open
     csv
     |> IO.binstream(:line)
@@ -49,7 +45,8 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
     |> Repo.all
     |> Enum.each(
       fn(bonus_program) ->
-        BonusProgram.changeset(%{state: "archived"})
+        bonus_program
+        |> BonusProgram.changeset(%{state: "archived"})
         |> Repo.update()
       end
     )

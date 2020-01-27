@@ -1,6 +1,6 @@
 defmodule WhatIsBetterToPay.Operations.CreateBonusProgram do
   import Map, only: [merge: 2]
-  alias WhatIsBetterToPay.{Repo, User, Category, Place, BonusProgram}
+  alias WhatIsBetterToPay.{Repo, Category, Place, BonusProgram}
 
   def execute(%{category: "*"} = params) do
     create_multipurpose(params)
