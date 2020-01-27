@@ -1,7 +1,6 @@
 defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
   require Logger
-  alias WhatIsBetterToPay.Repo
-  alias WhatIsBetterToPay.User
+  alias WhatIsBetterToPay.{Repo, User}
 
   def execute(params) do
     %{link: link} = params
