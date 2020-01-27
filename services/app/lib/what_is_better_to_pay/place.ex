@@ -4,10 +4,11 @@ defmodule WhatIsBetterToPay.Place do
   import Ecto.Changeset
 
   schema "places" do
-    # field(:title, :string)
-    # belongs_to :category, Category
+    field(:title, :string)
 
-    # timestamps()
+    timestamps()
+
+    belongs_to :category, WhatIsBetterToPay.Category
   end
 
     def changeset(struct, params \\ %{}) do

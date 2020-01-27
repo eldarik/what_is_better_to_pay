@@ -9,6 +9,7 @@ defmodule WhatIsBetterToPay.Repo.Migrations.CreatePlaces do
       timestamps()
     end
 
+    create index(:places, :category_id)
     create unique_index(:places, :title)
   end
 end

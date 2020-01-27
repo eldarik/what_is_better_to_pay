@@ -9,7 +9,7 @@ defmodule WhatIsBetterToPay.Category do
     timestamps()
   end
 
-    def changeset(struct, params \\ %{}) do
+  def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title])
     |> validate_required([:title])
