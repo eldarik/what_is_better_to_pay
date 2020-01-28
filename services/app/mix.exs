@@ -25,10 +25,13 @@ defmodule WhatIsBetterToPay.MixFile do
       {:nadia, "~> 0.4.1"},
       {:poison, "~> 3.1"},
       {:httpoison, "~> 1.5.1"},
-      {:mock, "~> 0.3.0", only: :test},
       {:ecto_sql, "~> 3.2"}, {:postgrex, ">= 0.0.0"},
       {:csv, "~> 2.3"},
-      {:google_maps, "~> 0.11"}
+      {:google_maps, "~> 0.11"},
+
+      # test
+      {:ex_machina, "~> 2.0", only: :test},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 
