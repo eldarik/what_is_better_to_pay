@@ -3,12 +3,6 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
   alias WhatIsBetterToPay.Operations.CreateBonusProgram
   alias WhatIsBetterToPay.{Repo, User, BonusProgram}
 
-  @user_params %{username: "foobar", telegram_id: "foobar123"}
-
-  %User{}
-  |> User.changeset(@user_params)
-  |> Repo.insert()
-
   describe "execute" do
     @params %{
       card_title: "card 123",
@@ -18,7 +12,7 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
     }
 
     test "creates bonus program" do
-      user = User |> Repo.get_by(@user_params)
+      user = insert(:user)
       result =
         Map.merge(@params, %{user: user})
         |> CreateBonusProgram.execute
@@ -37,7 +31,7 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
     }
 
     test "creates bonus program" do
-      user = User |> Repo.get_by(@user_params)
+      user = insert(:user)
       result =
         Map.merge(@params, %{user: user})
         |> CreateBonusProgram.execute

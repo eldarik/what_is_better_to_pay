@@ -4,7 +4,8 @@ defmodule WhatIsBetterToPay.Commands.LoadBonusPrograms do
 
   def execute(%{message: %{text: link}} = update) do
     send_message "Документ обрабатывается..."
-    Map.merge(user_data, %{link: link})
+    user_data()
+    |> Map.merge(%{link: link})
     |> ImportBonusPrograms.execute
     send_message "Обработка завершена"
   end

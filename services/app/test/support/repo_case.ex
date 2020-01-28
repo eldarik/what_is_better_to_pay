@@ -3,11 +3,9 @@ defmodule WhatIsBetterToPay.RepoCase do
 
   using do
     quote do
-      alias WhatIsBetterToPay.Repo
+      import WhatIsBetterToPay.Factory
 
-      import Ecto
-      import Ecto.Query
-      import WhatIsBetterToPay.RepoCase
+      alias WhatIsBetterToPay.Repo
     end
   end
 

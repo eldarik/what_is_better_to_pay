@@ -19,4 +19,16 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusProgramsTest do
       refute user == nil
     end
   end
+
+  describe "execute for existing user" do
+    @params %{link: "foobar-link"}
+
+    test "creates user, save bonus programs from document" do
+      user = insert(:user)
+      result =
+        Map.merge(@params, %{telegram_id: user.telegram_id})
+        |> ImportBonusPrograms.execute
+      assert result == {:ok}
+    end
+  end
 end
