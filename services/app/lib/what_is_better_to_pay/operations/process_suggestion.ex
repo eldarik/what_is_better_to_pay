@@ -2,17 +2,23 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestion do
   import Ecto.Query, only: [from: 2]
   alias WhatIsBetterToPay.{Repo, User, Place, Category, BonusProgram}
 
-  def execute(%User{} = user, %Category{} = category, %Place{} = place) do
+  def execute(%{user: user, category: category, place: place}) do
+    bonus_programs = active_bonus_programs(user)
+    found_by_category = bonus_programs |> program_by(category)
+    found_by_place = bonus_programs |> program_by(place)
+    found = compare(found_by_place, found_by_category)
+
+    bonus_programs |> result(found)
   end
 
-  def execute(%User{} = user, %Category{} = category) do
+  def execute(%{user: user, catego: category}) do
     bonus_programs = active_bonus_programs(user)
     found = bonus_programs |> program_by(category)
 
     bonus_programs |> result(found)
   end
 
-  def execute(%User{} = user, %Place{} = place) do
+  def execute(%{user: user, place: place}) do
     bonus_programs = active_bonus_programs(user)
     found = bonus_programs |> program_by(place)
 
@@ -53,6 +59,22 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestion do
     bonus_programs
     |> Enum.max_by(fn bp -> bp.percentage end, fn -> nil end)
   end
+
+  defp compare(%BonusProgram{} = left, %BonusProgram{} = right) do
+    if(left.percentage > right.percentage, do: left, else: right)
+  end
+
+  defp compare(nil, %BonusProgram{} = bonus_program) do
+    bonus_program
+  end
+
+  defp compare(%BonusProgram{} = bonus_program, nil) do
+    bonus_program
+  end
+
+  # defp compare(nil, nil) do
+  #   nil
+  # end
 
   defp result(_, %BonusProgram{} = bonus_program) do
     {:ok, bonus_program}
