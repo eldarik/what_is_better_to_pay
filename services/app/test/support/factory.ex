@@ -24,18 +24,15 @@ defmodule WhatIsBetterToPay.Factory do
     }
   end
 
-  def bonus_program_factory(
-    %{
-      multipurpose: multipurpose,
-      state: state,
-      percentage: percentage
-    }
-  ) do
+  def bonus_program_factory do
     %BonusProgram{
       card_title: sequence(:card_title, &"card #{&1}"),
       multipurpose: false,
-      percentage: percentage || 0.05,
-      state: state or "active"
+      percentage: 0.05,
+      state: "active",
+      category: build(:category),
+      place: build(:place),
+      user: build(:user)
     }
   end
 end
