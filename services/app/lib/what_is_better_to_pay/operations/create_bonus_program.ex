@@ -1,6 +1,7 @@
 defmodule WhatIsBetterToPay.Operations.CreateBonusProgram do
   import Map, only: [merge: 2]
-  alias WhatIsBetterToPay.{Repo, Category, Place, BonusProgram}
+  import Ecto.Query, only: [from: 2]
+  alias WhatIsBetterToPay.{Repo, Category, Place, BonusProgram, SimilarCategory}
 
   def execute(%{category: "*"} = params) do
     create_multipurpose(params)
@@ -22,15 +23,21 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgram do
     place = find_or_create_place(place_title, category)
     merge(
       params,
-      %{category_id: category.id, place_id: place.id, multipurpose: false}
+      %{category: category, place: place, multipurpose: false}
     )
     |> create
     {:ok}
   end
 
-  defp create_multipurpose(params) do
-    merge(params, %{multipurpose: true})
-    |> create
+  defp create_multipurpose(%{user: user} = params) do
+    attrs =
+      %{
+        state: "active",
+        user_id: user.id,
+        multipurpose: true
+      }
+      |> merge(params)
+    base_create(attrs)
   end
 
   defp find_or_create_category(title) do
@@ -47,7 +54,18 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgram do
     end
   end
 
-  defp find_or_create_place("-", _category),do: %Place{}
+  defp similar_categories(category) do
+    from(
+      c in Category,
+      join: sc in SimilarCategory, on: sc.left_category_id == c.id,
+      where: sc.right_category_id == ^category.id
+    )
+    |> Repo.all
+  end
+
+  defp find_or_create_place("-", _category) do
+    nil
+  end
 
   defp find_or_create_place(title, category) do
     place = Place |> Repo.get_by(category_id: category.id, title: title)
@@ -63,10 +81,47 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgram do
     end
   end
 
-  defp create(%{user: user} = params) do
-    attrs = merge(params, %{state: "active", user_id: user.id})
+  defp create(%{place: nil, category: category} = params) do
+    [category | similar_categories(category)]
+    |> Enum.each(
+         fn c ->
+           params
+           |> merge(%{category: c})
+           |> create_without_place
+         end
+       )
+  end
+
+  defp create(
+    %{user: user, place: place, category: category} = params
+  ) do
+    attrs =
+      %{
+        state: "active",
+        user_id: user.id,
+        category_id: category.id,
+        place_id: place.id
+      }
+      |> merge(params)
+    base_create(attrs)
+  end
+
+  defp create_without_place(
+    %{user: user, category: category} = params
+  ) do
+    attrs =
+      %{
+        state: "active",
+        user_id: user.id,
+        category_id: category.id
+      }
+      |> merge(params)
+    base_create(attrs)
+  end
+
+  defp base_create(params) do
     %BonusProgram{}
-    |> BonusProgram.changeset(attrs)
+    |> BonusProgram.changeset(params)
     |> Repo.insert()
   end
 end

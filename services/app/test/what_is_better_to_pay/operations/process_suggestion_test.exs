@@ -16,26 +16,6 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestionTest do
     end
   end
 
-  describe "execute when passed similar category" do
-    test "returns bonus program for user" do
-      user = insert(:user)
-      bonus_program = insert(:bonus_program, user: user)
-      insert(:bonus_program, user: user)
-      category = bonus_program.category
-      similar_category = insert(:category)
-      insert(
-        :similar_category,
-        left_category: category,
-        right_category: similar_category
-      )
-      {:ok, result} =
-        ProcessSuggestion.execute(
-          %{user: user, category: similar_category, place: nil}
-        )
-      assert result.id == bonus_program.id
-    end
-  end
-
   describe "execute when passed category not found" do
     test "returns multipurpose bonus program" do
       user = insert(:user)
