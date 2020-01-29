@@ -17,7 +17,7 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
     csv
     |> IO.binstream(:line)
     |> CSV.Decoding.Decoder.decode
-    |> Enum.map(fn(parsed) -> {:ok, row} = parsed; row end)
+    |> Enum.map(fn parsed -> {:ok, row} = parsed; row end)
   end
 
   defp find_or_create_user(%{telegram_id: telegram_id} = params) do
@@ -44,7 +44,7 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
     )
     |> Repo.all
     |> Enum.each(
-      fn(bonus_program) ->
+      fn bonus_program ->
         bonus_program
         |> BonusProgram.changeset(%{state: "archived"})
         |> Repo.update()
@@ -56,7 +56,7 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
     # NOTE: first row with headers should be skipped
     document_data
     |> Enum.drop(1)
-    |> Enum.each(fn(row) -> create_new_bonus_program(user, row) end)
+    |> Enum.each(fn row -> create_new_bonus_program(user, row) end)
   end
 
   defp create_new_bonus_program(user, row) do
