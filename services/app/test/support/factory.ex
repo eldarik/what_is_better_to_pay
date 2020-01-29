@@ -1,6 +1,8 @@
 defmodule WhatIsBetterToPay.Factory do
   use ExMachina.Ecto, repo: WhatIsBetterToPay.Repo
-  alias WhatIsBetterToPay.{Repo, User, Category, Place, BonusProgram}
+  alias WhatIsBetterToPay.{
+    Repo, User, Category, Place, BonusProgram, SimilarCategory
+  }
 
   def user_factory do
     %User{
@@ -14,6 +16,13 @@ defmodule WhatIsBetterToPay.Factory do
   def category_factory do
     %Category{
       title: sequence(:title, &"category #{&1}")
+    }
+  end
+
+  def similar_category_factory do
+    %SimilarCategory{
+      left_category: build(:category),
+      right_category: build(:category)
     }
   end
 

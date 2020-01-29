@@ -22,7 +22,7 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgram do
     place = find_or_create_place(place_title, category)
     merge(
       params,
-      %{category: category.id, place: place.id, multipurpose: false}
+      %{category_id: category.id, place_id: place.id, multipurpose: false}
     )
     |> create
     {:ok}
