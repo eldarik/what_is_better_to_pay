@@ -6,7 +6,6 @@ defmodule WhatIsBetterToPay.Commands.PhraseQuery do
     params = user_data |> Map.merge(%{phrase: phrase})
     case params |> ProcessSuggestionByPhrase.execute do
       {:ok, bonus_program} ->
-        require IEx; IEx.pry
         send_message ~s"""
           Лучший способ оплаты:
           #{bonus_program.card_title} c #{bonus_program.percentage}%

@@ -6,6 +6,21 @@ flights:
     - title: самолеты
     - title: авиабилеты
     - title: билеты на самолет
+flights_1:
+  title: самолет
+  similar:
+    - title: самолеты
+    - title: авиабилеты
+    - title: билеты на самолет
+flights_2:
+  title: самолеты
+  similar:
+    - title: авиабилеты
+    - title: билеты на самолет
+flights_3:
+  title: авиабилеты
+  similar:
+    - title: билеты на самолет
 сar_service:
   title: автоуслуги
   similar:
@@ -13,10 +28,29 @@ flights:
     - title: автосервис
     - title: автомойки
     - title: автозапчасти
+сar_service_1:
+  title: автоуслуга
+  similar:
+    - title: автосервис
+    - title: автомойки
+    - title: автозапчасти
+сar_service_2:
+  title: автосервис
+  similar:
+    - title: автомойки
+    - title: автозапчасти
+сar_service_3:
+  title: автомойки
+  similar:
+    - title: автозапчасти
 farmacy:
   title: аптека
   similar:
     - title: аптеки
+    - title: лекарства
+farmacy_1:
+  title: аптеки
+  similar:
     - title: лекарства
 car_rent:
   title: аренда авто
@@ -27,15 +61,33 @@ household_goods:
   similar:
     - title: товары для дома и ремонта
     - title: магазин мебели
+household_goods_2:
+  title: товары для дома и ремонта
+  similar:
+    - title: магазин мебели
 railway_tickets:
   title: железнодорожные билеты
   similar:
     - title: билеты на поезд
     - title: жд билеты
+    - title: жд
+railway_tickets_1:
+  title: билеты на поезд
+  similar:
+    - title: жд билеты
+    - title: жд
+railway_tickets_1:
+  title: жд билеты
+  similar:
+    - title: жд
 pets:
   title: животные
   similar:
     - title: питомцы
+    - title: зоомагазин
+pets:
+  title: питомцы
+  similar:
     - title: зоомагазин
 art:
   title: искусство
@@ -43,15 +95,32 @@ art:
     - title: галерея
     - title: антикварный магазин
     - title: арт-дилер
+art_1:
+  title: галерея
+  similar:
+    - title: антикварный магазин
+    - title: арт-дилер
+art_2:
+  title: антикварный магазин
+  similar:
+    - title: арт-дилер
 cinema:
   title: кино
   similar:
     - title: кинотеатр
     - title: магазин кино
+cinema_1:
+  title: кинотеатр
+  similar:
+    - title: магазин кино
 books:
   title: книги
   similar:
     - title: книжный магазин
+    - title: газетный киоск
+books_1:
+  title: книжный магазин
+  similar:
     - title: газетный киоск
 beaty:
   title: красота
@@ -60,16 +129,44 @@ beaty:
     - title: косметический салон
     - title: spa
     - title: салон красоты
+beaty_1:
+  title: массажный салон
+  similar:
+    - title: косметический салон
+    - title: spa
+    - title: салон красоты
+beaty_2:
+  title: косметический салон
+  similar:
+    - title: spa
+    - title: салон красоты
+beaty_3:
+  title: spa
+  similar:
+    - title: салон красоты
 music:
   title: музыка
   similar:
     - title: магазин музыки
     - title: магазин музыкальных инструментов
     - title: музыкальные инструменты
-сlothes_and_shoes:
+music_1:
+  title: магазин музыки
+  similar:
+    - title: магазин музыкальных инструментов
+    - title: музыкальные инструменты
+music_2:
+  title: магазин музыкальных инструментов
+  similar:
+    - title: музыкальные инструменты
+сlothes_and_shoes_1:
   title: одежда и обувь
   similar:
     - title: одежда
+    - title: обувь
+сlothes_and_shoes:
+  title: одежда
+  similar:
     - title: обувь
 entartainment:
   title: развлечения
@@ -82,6 +179,10 @@ restaurant:
   similar:
     - title: бар
     - title: кафе
+restaurant_1:
+  title: бар
+  similar:
+    - title: кафе
 sport_good:
   title: спорттовар
 souvenir:
@@ -90,16 +191,38 @@ souvenir:
     - title: подарок
     - title: магазин суверниров
     - title: магазин подарков
+souvenir_1:
+  title: подарок
+  similar:
+    - title: магазин суверниров
+    - title: магазин подарков
+souvenir_2:
+  title: магазин суверниров
+  similar:
+    - title: магазин подарков
 supermarkets:
   title: супермаркет
   similar:
     - title: продукты
+    - title: продуктовый магазин
+supermarkets_1:
+  title: продукты
+  similar:
     - title: продуктовый магазин
 fuel:
   title: топливо
   similar:
     - title: азс
     - title: заправка
+    - title: бензин
+fuel_1:
+  title: азс
+  similar:
+    - title: заправка
+    - title: бензин
+fuel_2:
+  title: заправка
+  similar:
     - title: бензин
 transport:
   title: транспорт
@@ -108,10 +231,33 @@ transport:
     - title: автобус
     - title: метро
     - title: троллейбус
+    - title: трамвай
     - title: общественный транспорт
     - title: лизинг авто
     - title: паркинг
     - title: парковка
+transport_2:
+  title: автобус
+  similar:
+    - title: метро
+    - title: троллейбус
+    - title: общественный транспорт
+    - title: трамвай
+transport_3:
+  title: троллейбус
+  similar:
+    - title: метро
+    - title: общественный транспорт
+    - title: трамвай
+transport_4:
+  title: метро
+  similar:
+    - title: общественный транспорт
+    - title: трамвай
+transport_4:
+  title: общественный транспорт
+  similar:
+    - title: трамвай
 fastfood:
   title: фастфуд
 camera:
@@ -123,4 +269,8 @@ flowers:
   title: цветы
   similar:
     - title: цветочный магазин
+    - title: салон флористики
+flowers_2:
+  title: цветочный магазин
+  similar:
     - title: салон флористики
