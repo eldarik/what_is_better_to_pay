@@ -1,0 +1,126 @@
+---
+flights:
+  title: авиабилет
+  similar:
+    - title: самолет
+    - title: самолеты
+    - title: авиабилеты
+    - title: билеты на самолет
+сar_service:
+  title: автоуслуги
+  similar:
+    - title: автоуслуга
+    - title: автосервис
+    - title: автомойки
+    - title: автозапчасти
+farmacy:
+  title: аптека
+  similar:
+    - title: аптеки
+    - title: лекарства
+car_rent:
+  title: аренда авто
+  similar:
+    - title: дилерский центр
+household_goods:
+  title: товары для дома
+  similar:
+    - title: товары для дома и ремонта
+    - title: магазин мебели
+railway_tickets:
+  title: железнодорожные билеты
+  similar:
+    - title: билеты на поезд
+    - title: жд билеты
+pets:
+  title: животные
+  similar:
+    - title: питомцы
+    - title: зоомагазин
+art:
+  title: искусство
+  similar:
+    - title: галерея
+    - title: антикварный магазин
+    - title: арт-дилер
+cinema:
+  title: кино
+  similar:
+    - title: кинотеатр
+    - title: магазин кино
+books:
+  title: книги
+  similar:
+    - title: книжный магазин
+    - title: газетный киоск
+beaty:
+  title: красота
+  similar:
+    - title: массажный салон
+    - title: косметический салон
+    - title: spa
+    - title: салон красоты
+music:
+  title: музыка
+  similar:
+    - title: магазин музыки
+    - title: магазин музыкальных инструментов
+    - title: музыкальные инструменты
+сlothes_and_shoes:
+  title: одежда и обувь
+  similar:
+    - title: одежда
+    - title: обувь
+entartainment:
+  title: развлечения
+  similar:
+    - title: магазин видeoигр
+    - title: боулинг
+    - title: цирк
+restaurant:
+  title: ресторан
+  similar:
+    - title: бар
+    - title: кафе
+sport_good:
+  title: спорттовар
+souvenir:
+  title: сувенир
+  similar:
+    - title: подарок
+    - title: магазин суверниров
+    - title: магазин подарков
+supermarkets:
+  title: супермаркет
+  similar:
+    - title: продукты
+    - title: продуктовый магазин
+fuel:
+  title: топливо
+  similar:
+    - title: азс
+    - title: заправка
+    - title: бензин
+transport:
+  title: транспорт
+  similar:
+    - title: такси
+    - title: автобус
+    - title: метро
+    - title: троллейбус
+    - title: общественный транспорт
+    - title: лизинг авто
+    - title: паркинг
+    - title: парковка
+fastfood:
+  title: фастфуд
+camera:
+  title: фото и видео
+  similar:
+    - title: фото-техника
+    - title: видео-техника
+flowers:
+  title: цветы
+  similar:
+    - title: цветочный магазин
+    - title: салон флористики

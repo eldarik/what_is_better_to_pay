@@ -28,6 +28,7 @@ defmodule WhatIsBetterToPay.MixFile do
       {:ecto_sql, "~> 3.2"}, {:postgrex, ">= 0.0.0"},
       {:csv, "~> 2.3"},
       {:google_maps, "~> 0.11"},
+      {:yaml_elixir, "~> 2.4.0"},
 
       # test
       {:ex_machina, "~> 2.0", only: :test},
