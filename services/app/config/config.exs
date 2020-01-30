@@ -9,7 +9,8 @@ config :what_is_better_to_pay,
 
 config :what_is_better_to_pay, WhatIsBetterToPay.Repo,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 10
+  pool_size: 10,
+  show_sensitive_data_on_connection_error: true
 
 config :nadia,
   token: System.get_env("TELEGRAM_BOT_TOKEN")
