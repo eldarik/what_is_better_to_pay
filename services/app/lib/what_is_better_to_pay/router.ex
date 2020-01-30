@@ -11,7 +11,6 @@ defmodule WhatIsBetterToPay.Router do
       def match_message(message) do
         try do
           apply __MODULE__, :do_match_message, [message]
-          Logger.log :info, "message: #{Poison.encode! message}"
         rescue
           err in FunctionClauseError ->
             Logger.log :warn, """
@@ -41,29 +40,29 @@ defmodule WhatIsBetterToPay.Router do
         handle_message unquote(handler), [var!(update)]
       end
 
-      # def do_match_message(%{
-      #   message: %{
-      #     text: "/" <> unquote(command) <> " " <> _
-      #   }
-      # } = var!(update)) do
-      #   handle_message unquote(handler), [var!(update)]
-      # end
+      def do_match_message(%{
+        message: %{
+          text: "/" <> unquote(command) <> " " <> _
+        }
+      } = var!(update)) do
+        handle_message unquote(handler), [var!(update)]
+      end
 
-      # def do_match_message(%{
-      #   message: %{
-      #     text: "/" <> unquote(command) <> "@" <> unquote(@bot_name)
-      #   }
-      # } = var!(update)) do
-      #   handle_message unquote(handler), [var!(update)]
-      # end
+      def do_match_message(%{
+        message: %{
+          text: "/" <> unquote(command) <> "@" <> unquote(@bot_name)
+        }
+      } = var!(update)) do
+        handle_message unquote(handler), [var!(update)]
+      end
 
-      # def do_match_message(%{
-      #   message: %{
-      #     text: "/" <> unquote(command) <> "@" <> unquote(@bot_name) <> " " <> _
-      #   }
-      # } = var!(update)) do
-      #   handle_message unquote(handler), [var!(update)]
-      # end
+      def do_match_message(%{
+        message: %{
+          text: "/" <> unquote(command) <> "@" <> unquote(@bot_name) <> " " <> _
+        }
+      } = var!(update)) do
+        handle_message unquote(handler), [var!(update)]
+      end
     end
   end
 
@@ -84,11 +83,11 @@ defmodule WhatIsBetterToPay.Router do
         handle_message unquote(handler), [var!(update)]
       end
 
-      # def do_match_message(%{
-      #   inline_query: %{query: "/" <> unquote(command) <> " " <> _}
-      # } = var!(update)) do
-      #   handle_message unquote(handler), [var!(update)]
-      # end
+      def do_match_message(%{
+        inline_query: %{query: "/" <> unquote(command) <> " " <> _}
+      } = var!(update)) do
+        handle_message unquote(handler), [var!(update)]
+      end
     end
   end
 
@@ -103,17 +102,17 @@ defmodule WhatIsBetterToPay.Router do
 
   def generate_callback_query_command(command, handler) do
     quote do
-      # def do_match_message(%{
-      #   callback_query: %{data: "/" <> unquote(command)}
-      # } = var!(update)) do
-      #   handle_message unquote(handler), [var!(update)]
-      # end
+      def do_match_message(%{
+        callback_query: %{data: "/" <> unquote(command)}
+      } = var!(update)) do
+        handle_message unquote(handler), [var!(update)]
+      end
 
-      # def do_match_message(%{
-      #   callback_query: %{data: "/" <> unquote(command) <> " " <> _}
-      # } = var!(update)) do
-      #   handle_message unquote(handler), [var!(update)]
-      # end
+      def do_match_message(%{
+        callback_query: %{data: "/" <> unquote(command) <> " " <> _}
+      } = var!(update)) do
+        handle_message unquote(handler), [var!(update)]
+      end
     end
   end
 
