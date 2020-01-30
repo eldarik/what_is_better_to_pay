@@ -1,6 +1,6 @@
 defmodule WhatIsBetterToPay.Poller do
   use GenServer
-  require Logger
+  require Jason
 
   # Server
 

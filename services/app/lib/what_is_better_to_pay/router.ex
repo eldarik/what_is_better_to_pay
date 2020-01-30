@@ -1,4 +1,5 @@
 defmodule WhatIsBetterToPay.Router do
+  require Jason
   @bot_name Application.get_env(:what_is_better_to_pay, :bot_name)
 
   # Code injectors

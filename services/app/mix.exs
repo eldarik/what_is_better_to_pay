@@ -14,8 +14,8 @@ defmodule WhatIsBetterToPay.MixFile do
 
   def application do
     [
-      extra_applications: [:logger, :nadia, :jason],
-      applications: [:ecto_sql, :postgrex, :connection],
+      extra_applications: [:logger, :nadia],
+      applications: [:ecto_sql, :postgrex],
       mod: {WhatIsBetterToPay, []}
     ]
   end

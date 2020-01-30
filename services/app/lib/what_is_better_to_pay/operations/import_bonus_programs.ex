@@ -1,4 +1,5 @@
 defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
+  require CSV
   import Ecto.Query, only: [from: 2]
   alias WhatIsBetterToPay.{Repo, User, BonusProgram}
   alias WhatIsBetterToPay.Operations.CreateBonusProgram
@@ -16,7 +17,7 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
     {:ok, csv} = google_docs_api.fetch_document(link) |> StringIO.open
     csv
     |> IO.binstream(:line)
-    |> CSV.Decoding.Decoder.decode
+    |> CSV.decode
     |> Enum.map(fn parsed -> {:ok, row} = parsed; row end)
   end
 
