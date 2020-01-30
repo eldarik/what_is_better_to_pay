@@ -1,5 +1,5 @@
 defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByLocation do
-  def execute(%{username: username, location: location} = params) do
+  def execute(%{username: _username, location: _location} = _params) do
     # TODO:
     # 1. try to find nearest place by postgis in local db
     # 2. unless place was found  call google maps api to detect nearest place

@@ -53,7 +53,7 @@ defmodule WhatIsBetterToPay.LoadCategories do
     category = find_or_create(title)
     similar
     |> Enum.each(
-      fn %{"title" => similar_title} = data ->
+      fn %{"title" => similar_title} ->
         similar_category = find_or_create(similar_title)
         create_similar(category, similar_category)
         create_similar(similar_category, category)

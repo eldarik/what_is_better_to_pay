@@ -1,7 +1,7 @@
 defmodule WhatIsBetterToPay.Commands.LocationQuery do
   use WhatIsBetterToPay.Commander
 
-  def execute(%{message: %{location: location}}= update) do
+  def execute(%{message: %{location: _location}}= update) do
     send_message "Запрос по локации создан"
     # TODO:
     # {:ok, suggestion} =
