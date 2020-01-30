@@ -11,4 +11,4 @@ pg_backups_schedule: "@daily"
 
 import_document_example_url: https://docs.google.com/spreadsheets/d/1OXXqHFgSUAVrhG-Oa_ayZN6Tt5ZHFwTN0vVypMPi-Tg/edit?usp=sharing
 
-mix_env: production
+mix_env: prod

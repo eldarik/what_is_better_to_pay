@@ -18,12 +18,13 @@
     - template:
         src: environment.j2
         dest: "{{ what_is_better_to_pay_env_file }}"
-      tags: env, backend
+      tags: env, app
 
     - name: log into docker hub
       docker_login:
         username: "{{ vault_docker_hub_username }}"
         password: "{{ vault_docker_hub_password }}"
+      tags: app
 
     - name: pull app image
       docker_image:
