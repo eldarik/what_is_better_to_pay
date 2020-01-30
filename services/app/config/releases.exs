@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :what_is_better_to_pay,
   bot_name: System.get_env("TELEGRAM_BOT_NAME"),
@@ -16,5 +16,3 @@ config :nadia,
 config :google_maps,
   api_key: System.get_env("GOOGLE_API_KEY"),
   requester: HTTPoison
-
-import_config "#{Mix.env()}.exs"
