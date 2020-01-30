@@ -61,7 +61,7 @@
     - name: start app
       docker_container:
         recreate: yes
-        name: backend
+        name: app
         image: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
         state: started
         env_file: "{{ what_is_better_to_pay_env_file }}"
