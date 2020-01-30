@@ -15,7 +15,6 @@ COPY mix.exs mix.lock ./
 
 # Install all production dependencies
 RUN mix deps.get
-COPY config .
 RUN mix deps.compile
 
 COPY . .
