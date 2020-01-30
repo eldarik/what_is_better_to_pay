@@ -12,3 +12,12 @@ production-build:
 
 production-setup:
 	ansible-playbook ansible/server.yml -i ansible/production
+
+production-deploy:
+	ansible-playbook ansible/deploy.yml -i ansible/production --tag app
+
+production-build-and-deploy:
+	ansible-playbook ansible/build.yml -i ansible/production --tag app
+	git push origin master
+	git rev-parse HEAD
+	ansible-playbook ansible/deploy.yml -i ansible/production --tag app

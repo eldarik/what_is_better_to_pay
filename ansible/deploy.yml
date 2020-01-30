@@ -1,0 +1,70 @@
+---
+- hosts: all
+  gather_facts: no
+  vars_prompt:
+    - name: "image_tag"
+      prompt: "image tag"
+      private: no
+
+  tasks:
+    - set_fact: image_tag={{ image_tag }}
+      tags: always
+
+- hosts: webservers
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - template:
+        src: environment.j2
+        dest: "{{ what_is_better_to_pay_env_file }}"
+      tags: env, backend
+
+    - name: log into docker hub
+      docker_login:
+        username: "{{ vault_docker_hub_username }}"
+        password: "{{ vault_docker_hub_password }}"
+
+    - name: pull app image
+      docker_image:
+        name: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
+        state: present
+      tags: app
+
+    - name: create app db
+      docker_container:
+        recreate: yes
+        name: create_app_db
+        command: "mix ecto.create"
+        image: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
+        state: started
+        env_file: "{{ what_is_better_to_pay_env_file }}"
+        networks:
+          - name: "{{ what_is_better_to_pay_docker_network }}"
+      run_once: yes
+      tags: app
+
+    - name: run migrations
+      docker_container:
+        recreate: yes
+        name: app_migrations
+        command: "mix ecto.migrate"
+        image: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
+        state: started
+        env_file: "{{ what_is_better_to_pay_env_file }}"
+        networks:
+          - name: "{{ what_is_better_to_pay_docker_network }}"
+      run_once: yes
+      tags: app
+
+    - name: start app
+      docker_container:
+        recreate: yes
+        name: backend
+        image: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
+        state: started
+        env_file: "{{ what_is_better_to_pay_env_file }}"
+        restart_policy: always
+        networks:
+          - name: "{{ what_is_better_to_pay_docker_network }}"
+      tags: app
