@@ -1,3 +1,14 @@
-import_document_example_url: https://docs.google.com/spreadsheets/d/1OXXqHFgSUAVrhG-Oa_ayZN6Tt5ZHFwTN0vVypMPi-Tg/edit?usp=sharing
-vault_database_url: postgres://postgres:postgres@db:5432/production
+---
+ansible_user: root
+what_is_better_to_pay_run_user: root
+what_is_better_to_pay_run_user_home: /root
+
 what_is_better_to_pay_image_name: wibtp/what_is_better_to_pay
+what_is_better_to_pay_docker_network: what_is_better_to_pay_network
+what_is_better_to_pay_env_file: "{{ what_is_better_to_pay_run_user_home }}/.env"
+
+pg_backups_schedule: "@daily"
+
+import_document_example_url: https://docs.google.com/spreadsheets/d/1OXXqHFgSUAVrhG-Oa_ayZN6Tt5ZHFwTN0vVypMPi-Tg/edit?usp=sharing
+
+mix_env: production
