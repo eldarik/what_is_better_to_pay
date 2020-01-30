@@ -7,12 +7,7 @@ defmodule WhatIsBetterToPay do
 
   def start(_type, _args) do
     bot_name = Application.get_env(:what_is_better_to_pay, :bot_name)
-    token = Application.get_env(:nadia, :token)
 
-    IO.warn """
-    TELEGRAM_BOT_TOKEN
-    #{token}
-    """
     unless String.valid?(bot_name) do
       IO.warn """
       Env not found Application.get_env(:what_is_better_to_pay, :bot_name)
@@ -27,8 +22,8 @@ defmodule WhatIsBetterToPay do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(WhatIsBetterToPay.Poller, []),
-      supervisor(WhatIsBetterToPay.Matcher, []),
+      worker(WhatIsBetterToPay.Poller, []),
+      worker(WhatIsBetterToPay.Matcher, []),
       supervisor(WhatIsBetterToPay.Repo, [])
     ]
 
@@ -38,5 +33,4 @@ defmodule WhatIsBetterToPay do
     ]
     Supervisor.start_link(children, opts)
   end
-
 end
