@@ -27,8 +27,8 @@ defmodule WhatIsBetterToPay do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(WhatIsBetterToPay.Poller, []),
-      worker(WhatIsBetterToPay.Matcher, []),
+      supervisor(WhatIsBetterToPay.Poller, []),
+      supervisor(WhatIsBetterToPay.Matcher, []),
       supervisor(WhatIsBetterToPay.Repo, [])
     ]
 
