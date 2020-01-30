@@ -1,4 +1,4 @@
-FROM elixir:1.9
+FROM elixir:1.9.4
 
 ENV PROJECT_ROOT /usr/src/app
 ENV HEX_HOME $PROJECT_ROOT/.hex
@@ -19,5 +19,5 @@ RUN mix deps.compile
 
 COPY . .
 
-RUN mix compile
-CMD ["mix", "run", "--no-halt"]
+RUN mix do compile, release --overwrite
+CMD ["_build/prod/rel/what_is_better_to_pay/bin/what_is_better_to_pay", "start"]
