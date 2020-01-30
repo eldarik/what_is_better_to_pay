@@ -40,29 +40,29 @@ defmodule WhatIsBetterToPay.Router do
         handle_message unquote(handler), [var!(update)]
       end
 
-      def do_match_message(%{
-        message: %{
-          text: "/" <> unquote(command) <> " " <> _
-        }
-      } = var!(update)) do
-        handle_message unquote(handler), [var!(update)]
-      end
+      # def do_match_message(%{
+      #   message: %{
+      #     text: "/" <> unquote(command) <> " " <> _
+      #   }
+      # } = var!(update)) do
+      #   handle_message unquote(handler), [var!(update)]
+      # end
 
-      def do_match_message(%{
-        message: %{
-          text: "/" <> unquote(command) <> "@" <> unquote(@bot_name)
-        }
-      } = var!(update)) do
-        handle_message unquote(handler), [var!(update)]
-      end
+      # def do_match_message(%{
+      #   message: %{
+      #     text: "/" <> unquote(command) <> "@" <> unquote(@bot_name)
+      #   }
+      # } = var!(update)) do
+      #   handle_message unquote(handler), [var!(update)]
+      # end
 
-      def do_match_message(%{
-        message: %{
-          text: "/" <> unquote(command) <> "@" <> unquote(@bot_name) <> " " <> _
-        }
-      } = var!(update)) do
-        handle_message unquote(handler), [var!(update)]
-      end
+      # def do_match_message(%{
+      #   message: %{
+      #     text: "/" <> unquote(command) <> "@" <> unquote(@bot_name) <> " " <> _
+      #   }
+      # } = var!(update)) do
+      #   handle_message unquote(handler), [var!(update)]
+      # end
     end
   end
 

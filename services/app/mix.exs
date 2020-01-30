@@ -15,7 +15,7 @@ defmodule WhatIsBetterToPay.MixFile do
   def application do
     [
       extra_applications: [:logger, :nadia],
-      applications: [:ecto, :postgrex],
+      applications: [:ecto_sql, :postgrex, :connection],
       mod: {WhatIsBetterToPay, []}
     ]
   end
@@ -26,7 +26,7 @@ defmodule WhatIsBetterToPay.MixFile do
       {:poison, "~> 3.1"},
       {:httpoison, "~> 1.5.1"},
       {:ecto_sql, "~> 3.2"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, "~> 0.15.3"},
       {:csv, "~> 2.3"},
       {:google_maps, "~> 0.11"},
       {:yaml_elixir, "~> 2.4.0"},
