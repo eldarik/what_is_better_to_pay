@@ -76,7 +76,7 @@ railway_tickets_1:
   similar:
     - title: жд билеты
     - title: жд
-railway_tickets_1:
+railway_tickets_2:
   title: жд билеты
   similar:
     - title: жд
@@ -85,7 +85,7 @@ pets:
   similar:
     - title: питомцы
     - title: зоомагазин
-pets:
+pets_1:
   title: питомцы
   similar:
     - title: зоомагазин
@@ -254,7 +254,7 @@ transport_4:
   similar:
     - title: общественный транспорт
     - title: трамвай
-transport_4:
+transport_5:
   title: общественный транспорт
   similar:
     - title: трамвай
