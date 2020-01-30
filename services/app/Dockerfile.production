@@ -1,0 +1,25 @@
+FROM elixir:1.9
+
+ENV PROJECT_ROOT /usr/src/app
+ENV HEX_HOME $PROJECT_ROOT/.hex
+ENV MIX_HOME $PROJECT_ROOT/.mix
+ENV MIX_ENV prod
+
+WORKDIR $PROJECT_ROOT
+
+RUN mix local.hex --force \
+  && mix local.rebar --force
+
+# Copy all dependencies files
+COPY mix.exs mix.lock ./
+
+# Install all production dependencies
+RUN mix deps.get
+COPY config .
+RUN mix deps.compile
+
+COPY . .
+
+RUN mix compile
+
+CMD ["mix", "run", "--halt"]

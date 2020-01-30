@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: set current hash commit
+      local_action: 'command git rev-parse HEAD'
+      register: commit_hash
+      tags: always
+
+    - set_fact: image_tag={{ commit_hash.stdout }}
+      tags: always
+
+    - name: log into docker hub
+      docker_login:
+        username: "{{ vault_docker_hub_username }}"
+        password: '{{ vault_docker_hub_password }}'
+      tags: always
+
+    - name: build app image
+      docker_image:
+        path: "../services/app/"
+        name: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
+        state: present
+        push: yes
+        build:
+          dockerfile: Dockerfile.production
+      tags: app
