@@ -1,0 +1,87 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+
+  pre_tasks:
+    - apt:
+        update_cache: true
+        name:
+          - python3
+          - python3-pip
+          - docker.io
+      become: true
+
+    - block:
+      - name: generate locale
+        become: true
+        locale_gen:
+          name: en_US.UTF-8
+        tags: [locale]
+
+      - name: set locale
+        shell: update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
+        tags: [locale]
+
+      - meta: reset_connection
+
+    - pip:
+        name: docker
+      become: true
+
+    - docker_network:
+        name: "{{ what_is_better_to_pay_docker_network }}"
+      tags: docker_network
+
+  tasks:
+    - name: pull postgres image
+      docker_image:
+        name: postgres:12
+        state: present
+      tags: db
+
+    - name: start db
+      docker_container:
+        name: db
+        state: started
+        restart_policy: always
+        image: postgres:12
+        pull: false
+        detach: yes
+        networks:
+          - name: "{{ what_is_better_to_pay_docker_network }}"
+        volumes:
+          - pgdata:/var/lib/postgresql/data
+      tags: db
+
+    - name: pull postgres backup image
+      docker_image:
+        name: eldark/postgres-backup-s3
+        state: present
+      tags: pg_backups
+
+    - template:
+        src: environment.j2
+        dest: "{{ what_is_better_to_pay_env_file }}"
+      tags: pg_backups
+
+    - name: start postgres backups container
+      docker_container:
+        name: pg_backups
+        state: started
+        restart_policy: always
+        image: eldark/postgres-backup-s3
+        pull: false
+        detach: yes
+        networks:
+          - name: "{{ what_is_better_to_pay_docker_network }}"
+        env:
+          S3_REGION: "{{ vault_pg_backups_s3_region }}"
+          S3_ACCESS_KEY_ID: "{{ vault_pg_backups_s3_access_key_id }}"
+          S3_SECRET_ACCESS_KEY: "{{ vault_pg_backups_s3_secret_key }}"
+          S3_BUCKET: "{{ vault_pg_backups_s3_backet }}"
+          S3_PREFIX: "{{ vault_pg_backups_s3_prefix }}"
+          S3_ENDPOINT: "{{ vault_pg_backups_s3_endpoint }}"
+          POSTGRES_URL: "{{ vault_database_url }}"
+          SCHEDULE: "{{ pg_backups_schedule }}"
+      tags: pg_backups

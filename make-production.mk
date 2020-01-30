@@ -9,3 +9,6 @@ production-ansible-vaults-edit:
 
 production-build:
 	ansible-playbook ansible/build.yml -i ansible/production --tag app
+
+production-setup:
+	ansible-playbook ansible/server.yml -i ansible/production
