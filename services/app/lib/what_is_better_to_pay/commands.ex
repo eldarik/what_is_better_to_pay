@@ -17,7 +17,7 @@ defmodule WhatIsBetterToPay.Commands do
       true ->
         PhraseQuery.execute(update)
         # Logger.log :warn, "Did not match the message"
-        # Logger.log :info, "#{Poison.encode! update.message}"
+        # Logger.log :info, "#{Jason.encode! update.message}"
         # send_message "Sorry, I couldn't understand you"
     end
   end

@@ -23,6 +23,7 @@ defmodule WhatIsBetterToPay.MixFile do
   defp deps do
     [
       {:nadia, "~> 0.6.0"},
+      {:jason, "~> 1.1"},
       {:httpoison, "~> 1.6.2"},
       {:ecto_sql, "~> 3.2"},
       {:postgrex, "~> 0.15.3"},
