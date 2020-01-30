@@ -20,5 +20,5 @@ RUN mix deps.compile
 
 COPY . .
 
-RUN mix do compile, release
+RUN mix do compile, release --overwrite
 CMD ["_build/prod/rel/what_is_better_to_pay/bin/what_is_better_to_pay", "start"]
