@@ -1,6 +1,6 @@
 defmodule WhatIsBetterToPay.LoadCategories do
   @moduledoc false
-  @static_data_path "lib/static_data/categories.yml"
+  @categories_data_path "lib/static_data/categories.yml"
   # TODO: add mix task to sync categories, add in deploy process
   alias WhatIsBetterToPay.{Repo, Category, SimilarCategory}
 
@@ -16,7 +16,7 @@ defmodule WhatIsBetterToPay.LoadCategories do
 
   defp categories_data do
     File.cwd!()
-    |> Path.join(@static_data_path)
+    |> Path.join(@categories_data_path)
     |> YamlElixir.read_from_file
   end
 
