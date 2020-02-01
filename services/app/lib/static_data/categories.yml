@@ -43,12 +43,12 @@ flights_3:
   title: автомойки
   similar:
     - title: автозапчасти
-farmacy:
+pharmacy:
   title: аптека
   similar:
     - title: аптеки
     - title: лекарства
-farmacy_1:
+pharmacy_1:
   title: аптеки
   similar:
     - title: лекарства
@@ -65,6 +65,10 @@ household_goods_2:
   title: товары для дома и ремонта
   similar:
     - title: магазин мебели
+furniture_store:
+  title: магазин мебели
+  similar:
+    - title: мебель
 railway_tickets:
   title: железнодорожные билеты
   similar:
