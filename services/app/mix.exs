@@ -29,6 +29,7 @@ defmodule WhatIsBetterToPay.MixFile do
       {:csv, "~> 2.3"},
       {:google_maps, "~> 0.11"},
       {:yaml_elixir, "~> 2.4.0"},
+      {:geo_postgis, "~> 3.1"},
 
       # test
       {:ex_machina, "~> 2.0", only: :test},

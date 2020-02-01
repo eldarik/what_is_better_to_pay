@@ -8,7 +8,8 @@ config :what_is_better_to_pay,
 
 config :what_is_better_to_pay, WhatIsBetterToPay.Repo,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 10
+  pool_size: 10,
+  types: WhatIsBetterToPay.PostgresTypes
 
 config :nadia,
   token: System.get_env("TELEGRAM_BOT_TOKEN")
@@ -16,5 +17,8 @@ config :nadia,
 config :google_maps,
   api_key: System.get_env("GOOGLE_API_KEY"),
   requester: HTTPoison
+
+config :geo_postgis,
+  json_library: Jason
 
 import_config "#{Mix.env()}.exs"
