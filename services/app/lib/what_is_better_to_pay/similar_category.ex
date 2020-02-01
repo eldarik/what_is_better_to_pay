@@ -4,11 +4,14 @@ defmodule WhatIsBetterToPay.SimilarCategory do
   import Ecto.Changeset
 
   schema "similar_categories" do
-
-    belongs_to :left_category, WhatIsBetterToPay.Category,
+    belongs_to(
+      :left_category, WhatIsBetterToPay.Category,
       [foreign_key: :left_category_id]
-    belongs_to :right_category, WhatIsBetterToPay.Category,
+    )
+    belongs_to(
+      :right_category, WhatIsBetterToPay.Category,
       [foreign_key: :right_category_id]
+    )
     timestamps()
   end
 

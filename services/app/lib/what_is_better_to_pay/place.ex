@@ -8,7 +8,7 @@ defmodule WhatIsBetterToPay.Place do
 
     timestamps()
 
-    belongs_to :category, WhatIsBetterToPay.Category
+    belongs_to(:category, WhatIsBetterToPay.Category)
   end
 
     def changeset(struct, params \\ %{}) do

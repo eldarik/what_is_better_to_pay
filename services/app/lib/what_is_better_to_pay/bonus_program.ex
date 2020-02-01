@@ -11,9 +11,9 @@ defmodule WhatIsBetterToPay.BonusProgram do
 
     timestamps()
 
-    belongs_to :user, WhatIsBetterToPay.User
-    belongs_to :category, WhatIsBetterToPay.Category
-    belongs_to :place, WhatIsBetterToPay.Place
+    belongs_to(:user, WhatIsBetterToPay.User)
+    belongs_to(:category, WhatIsBetterToPay.Category)
+    belongs_to(:place, WhatIsBetterToPay.Place)
   end
 
     def changeset(struct, params \\ %{}) do
