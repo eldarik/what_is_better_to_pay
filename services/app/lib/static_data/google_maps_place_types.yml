@@ -1,0 +1,50 @@
+---
+airport: аэропорт
+amusement_park: парк развлечений
+aquarium: аквариум
+art_gallery: галерея искусств
+bakery: пекарня
+bar: бар
+beauty_salon: салон красоты
+bicycle_store: магазин велосипедов
+book_store: книжный магазин
+bus_station: автобусная остановка
+cafe: кафе
+car_dealer: автосалон
+car_rental: прокат автомобилей
+car_repair: ремонт машин
+car_wash: автомойка
+clothing_store: магазин одежды
+convenience_store: продуктовый магазин
+dentist: стоматология
+department_store: универсальный магазин
+drugstore: аптека
+electronics_store: магазин электроники
+florist: салон флористики
+furniture_store: мебельный магазин
+gas_station: заправка
+grocery_or_supermarket: продуктовый магазин
+gym: тренажерный зал
+# TODO: check places with hair_care type
+hair_care: ""
+hardware_store: товары для дома
+home_goods_store:  товары для дома
+jewelry_store: ювелирный магазин
+laundry: прачечная
+light_rail_station: трамвай
+liquor_store: винный магазин
+movie_theater: кинотеатр
+museum: музей
+night_club: ночной клуб
+parking: парковка
+pet_store: зоомагазин
+pharmacy: аптеку
+restaurant: ресторан
+shoe_store: обувной магазин
+spa: spa
+subway_station: станция метро
+supermarket: супермаркет
+taxi_stand: такси
+train_station: жд станция
+veterinary_care: ветерина
+zoo: зоопарк
