@@ -1,6 +1,6 @@
 defmodule WhatIsBetterToPay.Operations.SaveGoogleMapsPlaceTest do
   use WhatIsBetterToPay.RepoCase
-  alias WhatIsBetterToPay.{Repo, Category, Place}
+  alias WhatIsBetterToPay.{Repo, PlaceLocation}
   alias WhatIsBetterToPay.Operations.SaveGoogleMapsPlace
 
   describe "execute" do
@@ -19,6 +19,8 @@ defmodule WhatIsBetterToPay.Operations.SaveGoogleMapsPlaceTest do
       {:ok, place} = SaveGoogleMapsPlace.execute(@params)
       refute place == nil
       refute place.category_id == nil
+      place_location = PlaceLocation |> Repo.get_by(place_id: place.id)
+      refute place_location == nil
     end
   end
 

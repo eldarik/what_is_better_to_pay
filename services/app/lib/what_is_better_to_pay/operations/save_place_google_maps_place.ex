@@ -4,19 +4,23 @@ defmodule WhatIsBetterToPay.Operations.SaveGoogleMapsPlace do
 
   import Map, only: [merge: 2]
   import Ecto.Query, only: [from: 2]
-  alias WhatIsBetterToPay.{Repo, Category, Place, BonusProgram, SimilarCategory}
+  alias WhatIsBetterToPay.{
+    Repo,
+    Category,
+    Place,
+    PlaceLocation
+  }
 
   def execute(
     %{
       "geometry" => %{"location" => location},
       "name" => title,
       "types" => place_types
-    } = params
+    }
   ) do
     category = find_or_create_category(place_types)
     place = find_or_create_place(title, category)
-    # TODO: store location in PlaceLocation
-    # place |> save_location(location)
+    place |> save_location(location)
     case place do
       nil -> {:error, "place is not saved"}
       _ -> {:ok, place}
@@ -69,6 +73,13 @@ defmodule WhatIsBetterToPay.Operations.SaveGoogleMapsPlace do
 
   defp save_location(nil, location) do
     nil
+  end
+
+  defp save_location(place, %{"lat" => lat, "lng" => lng}) do
+    params = %{place_id: place.id, lng_lat_point: {lng, lat}}
+    %PlaceLocation{}
+    |> PlaceLocation.changeset(params)
+    |> Repo.insert()
   end
 
   defp google_maps_place_types do
