@@ -13,11 +13,11 @@ compose-bash:
 	docker-compose run --rm --user=$(USER) app bash
 
 compose-db-init:
-	docker-compose run --rm app mix ecto.create
-	docker-compose run --rm app mix ecto.migrate
+	docker-compose run --rm --user=$(USER) app mix ecto.create
+	docker-compose run --rm --user=$(USER) app mix ecto.migrate
 
 compose-install-mix:
-	docker-compose run --rm app mix deps.get
+	docker-compose run --rm --user=$(USER) app mix deps.get
 
 compose-setup: compose-down \
 	ansible-development-setup-env \
@@ -26,10 +26,10 @@ compose-setup: compose-down \
 	compose-db-init
 
 compose-console:
-	docker-compose run --rm app iex -S mix
+	docker-compose run --rm --user=$(USER) app iex -S mix
 
 compose-test:
-	docker-compose run --rm app mix test
+	docker-compose run --rm --user=$(USER) app mix test
 
 compose-restart:
 	docker-compose restart
