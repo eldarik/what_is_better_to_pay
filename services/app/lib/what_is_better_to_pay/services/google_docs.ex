@@ -7,13 +7,14 @@ defmodule WhatIsBetterToPay.Services.GoogleDocs do
     response =
       parse_document_id(link)
       |> wrap_for_download
-      |> HTTPoison.get
+      |> HTTPoison.get()
 
     case response do
       {:ok, %HTTPoison.Response{body: body}} ->
         body
+
       _ ->
-        Logger.log :warn, "Raised error while fetching document: #{link}"
+        Logger.log(:warn, "Raised error while fetching document: #{link}")
         nil
     end
   end
@@ -26,6 +27,7 @@ defmodule WhatIsBetterToPay.Services.GoogleDocs do
     case Regex.run(@document_id_regex, link) do
       [_, id] ->
         id
+
       _ ->
         nil
     end

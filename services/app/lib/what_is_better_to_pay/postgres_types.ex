@@ -3,5 +3,3 @@ Postgrex.Types.define(
   [Geo.PostGIS.Extension] ++ Ecto.Adapters.Postgres.extensions(),
   json: Jason
 )
-
-

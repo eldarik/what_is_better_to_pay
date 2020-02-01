@@ -8,6 +8,7 @@ defmodule WhatIsBetterToPay.Search do
     # now used only title for Category and Place
     prefix_term = prefix_term(search_term)
     ilike_term = ilike_term(search_term)
+
     where(
       query,
       fragment(

@@ -14,18 +14,19 @@ defmodule WhatIsBetterToPay.PlaceLocation do
   def changeset(struct, params \\ %{}) do
     lng_lat_point = build_lng_lat_point(params[:lng_lat_point])
     params = Map.merge(params, %{lng_lat_point: lng_lat_point})
+
     struct
-    |> cast(params,
+    |> cast(
+      params,
       [:lng_lat_point, :place_id]
     )
-    |> validate_required(
-      [:lng_lat_point, :place_id]
-    )
+    |> validate_required([:lng_lat_point, :place_id])
   end
 
   def settings_changeset(object, params \\ %{}) do
     lng_lat_point = build_lng_lat_point(params[:lng_lat_point])
     params = Map.merge(params, %{lng_lat_point: lng_lat_point})
+
     object
     |> cast(
       params,

@@ -5,13 +5,17 @@ defmodule WhatIsBetterToPay.SimilarCategory do
 
   schema "similar_categories" do
     belongs_to(
-      :left_category, WhatIsBetterToPay.Category,
-      [foreign_key: :left_category_id]
+      :left_category,
+      WhatIsBetterToPay.Category,
+      foreign_key: :left_category_id
     )
+
     belongs_to(
-      :right_category, WhatIsBetterToPay.Category,
-      [foreign_key: :right_category_id]
+      :right_category,
+      WhatIsBetterToPay.Category,
+      foreign_key: :right_category_id
     )
+
     timestamps()
   end
 

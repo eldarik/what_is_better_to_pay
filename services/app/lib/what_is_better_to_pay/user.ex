@@ -13,13 +13,13 @@ defmodule WhatIsBetterToPay.User do
     timestamps()
   end
 
-    def changeset(struct, params \\ %{}) do
+  def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [
       :username,
       :telegram_id,
       :first_name,
-      :last_name,
+      :last_name
     ])
     |> validate_required([:username, :telegram_id])
     |> unique_constraint(:username)

@@ -4,7 +4,7 @@ defmodule WhatIsBetterToPay.Matcher do
   # Server
 
   def start_link do
-    GenServer.start_link __MODULE__, :ok, name: __MODULE__
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
   def init(:ok) do
@@ -12,7 +12,7 @@ defmodule WhatIsBetterToPay.Matcher do
   end
 
   def handle_cast(message, state) do
-    WhatIsBetterToPay.Commands.match_message message
+    WhatIsBetterToPay.Commands.match_message(message)
 
     {:noreply, state}
   end
@@ -20,6 +20,6 @@ defmodule WhatIsBetterToPay.Matcher do
   # Client
 
   def match(message) do
-    GenServer.cast __MODULE__, message
+    GenServer.cast(__MODULE__, message)
   end
 end

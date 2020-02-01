@@ -24,13 +24,13 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByPhrase do
   defp find_category(phrase) do
     from(category in Category, limit: 1)
     |> Search.run(phrase)
-    |> Repo.one
+    |> Repo.one()
   end
 
   defp find_place(phrase) do
     from(place in Place, limit: 1)
     |> Search.run(phrase)
-    |> Repo.one
+    |> Repo.one()
   end
 
   defp make_suggestion(nil, _, _) do
@@ -38,8 +38,6 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByPhrase do
   end
 
   defp make_suggestion(user, category, place) do
-    ProcessSuggestion.execute(
-      %{user: user, category: category, place: place}
-    )
+    ProcessSuggestion.execute(%{user: user, category: category, place: place})
   end
 end

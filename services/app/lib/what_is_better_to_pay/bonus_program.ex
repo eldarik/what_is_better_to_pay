@@ -16,9 +16,10 @@ defmodule WhatIsBetterToPay.BonusProgram do
     belongs_to(:place, WhatIsBetterToPay.Place)
   end
 
-    def changeset(struct, params \\ %{}) do
+  def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params,
+    |> cast(
+      params,
       [
         :card_title,
         :multipurpose,
@@ -29,15 +30,13 @@ defmodule WhatIsBetterToPay.BonusProgram do
         :place_id
       ]
     )
-    |> validate_required(
-      [
-        :card_title,
-        :multipurpose,
-        :percentage,
-        :state,
-        :user_id,
-      ]
-    )
+    |> validate_required([
+      :card_title,
+      :multipurpose,
+      :percentage,
+      :state,
+      :user_id
+    ])
   end
 
   def settings_changeset(object, params \\ %{}) do

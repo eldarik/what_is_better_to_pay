@@ -1,7 +1,13 @@
 defmodule WhatIsBetterToPay.Factory do
   use ExMachina.Ecto, repo: WhatIsBetterToPay.Repo
+
   alias WhatIsBetterToPay.{
-    Repo, User, Category, Place, BonusProgram, SimilarCategory
+    Repo,
+    User,
+    Category,
+    Place,
+    BonusProgram,
+    SimilarCategory
   }
 
   def user_factory do
@@ -9,7 +15,7 @@ defmodule WhatIsBetterToPay.Factory do
       username: sequence(:username, &"user_#{&1}"),
       first_name: sequence(:username, &"User #{&1}"),
       last_name: sequence(:username, &"User #{&1}"),
-      telegram_id: :rand.uniform(9_999_999) |> Integer.to_string
+      telegram_id: :rand.uniform(9_999_999) |> Integer.to_string()
     }
   end
 

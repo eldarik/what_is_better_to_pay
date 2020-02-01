@@ -14,19 +14,25 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
 
   defp fetch_document(link) do
     google_docs_api = Application.get_env(:what_is_better_to_pay, :google_docs_api)
-    {:ok, csv} = google_docs_api.fetch_document(link) |> StringIO.open
+    {:ok, csv} = google_docs_api.fetch_document(link) |> StringIO.open()
+
     csv
     |> IO.binstream(:line)
-    |> CSV.decode
-    |> Enum.map(fn parsed -> {:ok, row} = parsed; row end)
+    |> CSV.decode()
+    |> Enum.map(fn parsed ->
+      {:ok, row} = parsed
+      row
+    end)
   end
 
   defp find_or_create_user(%{telegram_id: telegram_id} = params) do
     user = User |> Repo.get_by(telegram_id: telegram_id)
+
     case user do
       nil ->
         {:ok, user} = create_user(params)
         user
+
       _ ->
         user
     end
@@ -43,14 +49,12 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
       bp in BonusProgram,
       where: bp.user_id == ^user.id and bp.state == "active"
     )
-    |> Repo.all
-    |> Enum.each(
-      fn bonus_program ->
-        bonus_program
-        |> BonusProgram.changeset(%{state: "archived"})
-        |> Repo.update()
-      end
-    )
+    |> Repo.all()
+    |> Enum.each(fn bonus_program ->
+      bonus_program
+      |> BonusProgram.changeset(%{state: "archived"})
+      |> Repo.update()
+    end)
   end
 
   defp create_new_bonus_programs(user, document_data) do
@@ -62,14 +66,13 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusPrograms do
 
   defp create_new_bonus_program(user, row) do
     [card_title, percentage, category, place] = row
-    CreateBonusProgram.execute(
-      %{
-        user: user,
-        card_title: card_title,
-        percentage: percentage,
-        category: category,
-        place: place
-      }
-    )
+
+    CreateBonusProgram.execute(%{
+      user: user,
+      card_title: card_title,
+      percentage: percentage,
+      category: category,
+      place: place
+    })
   end
 end

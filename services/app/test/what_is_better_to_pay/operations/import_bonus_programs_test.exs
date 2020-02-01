@@ -25,9 +25,11 @@ defmodule WhatIsBetterToPay.Operations.ImportBonusProgramsTest do
 
     test "creates user, save bonus programs from document" do
       user = insert(:user)
+
       result =
         Map.merge(@params, %{telegram_id: user.telegram_id})
-        |> ImportBonusPrograms.execute
+        |> ImportBonusPrograms.execute()
+
       assert result == {:ok}
     end
   end

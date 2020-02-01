@@ -14,9 +14,11 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
 
     test "creates bonus program" do
       user = insert(:user)
+
       result =
         merge(@params, %{user: user})
-        |> CreateBonusProgram.execute
+        |> CreateBonusProgram.execute()
+
       assert result == {:ok}
       bonus_program = BonusProgram |> Repo.get_by(user_id: user.id)
       refute bonus_program == nil
@@ -35,9 +37,11 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
 
     test "creates multipurpose bonus program" do
       user = insert(:user)
+
       result =
         merge(@params, %{user: user})
-        |> CreateBonusProgram.execute
+        |> CreateBonusProgram.execute()
+
       assert result == {:ok}
       bonus_program = BonusProgram |> Repo.get_by(user_id: user.id)
       refute bonus_program == nil
@@ -48,7 +52,7 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
   end
 
   describe "execute when place is - (not filled)" do
-     @params %{
+    @params %{
       card_title: "card 123",
       percentage: "5",
       place: "-"
@@ -58,14 +62,17 @@ defmodule WhatIsBetterToPay.Operations.CreateBonusProgramTest do
       user = insert(:user)
       category = insert(:category)
       similar_category = insert(:category)
+
       insert(
         :similar_category,
         left_category: category,
         right_category: similar_category
       )
+
       result =
         merge(@params, %{user: user, category: category.title})
-        |> CreateBonusProgram.execute
+        |> CreateBonusProgram.execute()
+
       assert result == {:ok}
       bonus_program = BonusProgram |> Repo.get_by(user_id: user.id)
       refute bonus_program == nil

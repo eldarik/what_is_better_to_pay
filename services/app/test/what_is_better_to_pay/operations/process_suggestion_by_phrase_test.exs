@@ -6,10 +6,7 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByTest do
     test "returns error" do
       username = "foobar"
       phrase = "foobar"
-      result =
-        ProcessSuggestionByPhrase.execute(
-          %{username: username, phrase: phrase}
-        )
+      result = ProcessSuggestionByPhrase.execute(%{username: username, phrase: phrase})
 
       assert result == {:error, "user_not_found"}
     end

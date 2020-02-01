@@ -10,7 +10,7 @@ defmodule WhatIsBetterToPay.Operations.SaveGoogleMapsPlaceTest do
         "location" => %{
           "lat" => 55.8268342,
           "lng" => 49.20204529999999
-       }
+        }
       },
       "types" => ~w/cafe/
     }
@@ -31,7 +31,7 @@ defmodule WhatIsBetterToPay.Operations.SaveGoogleMapsPlaceTest do
         "location" => %{
           "lat" => 55.8268342,
           "lng" => 49.20204529999999
-       }
+        }
       },
       "types" => ~w/point_of_interest establishment/
     }

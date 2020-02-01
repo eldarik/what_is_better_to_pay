@@ -16,7 +16,7 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestion do
       bp in BonusProgram,
       where: bp.user_id == ^user.id and bp.state == "active"
     )
-    |> Repo.all
+    |> Repo.all()
   end
 
   defp bonus_program_with(_bonus_programs, nil) do
@@ -29,21 +29,17 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestion do
 
   defp bonus_program_with(bonus_programs, %Place{} = place) do
     bonus_programs
-    |> Enum.filter(
-      fn bp ->
-        (bp.place_id == place.id or bp.category_id == place.category_id)
-      end
-    )
+    |> Enum.filter(fn bp ->
+      bp.place_id == place.id or bp.category_id == place.category_id
+    end)
     |> max
   end
 
   defp bonus_program_with(bonus_programs, %Category{} = category) do
     bonus_programs
-    |> Enum.filter(
-      fn bp ->
-        (bp.category_id == category.id)
-      end
-    )
+    |> Enum.filter(fn bp ->
+      bp.category_id == category.id
+    end)
     |> max
   end
 

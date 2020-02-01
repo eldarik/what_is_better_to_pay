@@ -11,7 +11,7 @@ defmodule WhatIsBetterToPay.Place do
     belongs_to(:category, WhatIsBetterToPay.Category)
   end
 
-    def changeset(struct, params \\ %{}) do
+  def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :category_id])
     |> validate_required([:title, :category_id])
