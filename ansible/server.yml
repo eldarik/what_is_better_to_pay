@@ -36,7 +36,7 @@
   tasks:
     - name: pull postgres image
       docker_image:
-        name: postgres:11
+        name: mdillon/postgis:11
         state: present
       tags: db
 
@@ -45,7 +45,7 @@
         name: db
         state: started
         restart_policy: always
-        image: postgres:11
+        image: mdillon/postgis:11
         pull: false
         detach: yes
         networks:
