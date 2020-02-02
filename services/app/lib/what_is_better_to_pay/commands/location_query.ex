@@ -5,13 +5,17 @@ defmodule WhatIsBetterToPay.Commands.LocationQuery do
   def execute(%{message: %{location: location}} = update) do
     send_message("Запрос по локации создан")
 
-    Map.merge(user_data(), %{location: location})
-    |> ProcessSuggestionByLocation.execute()
+    params = Map.merge(user_data(), %{location: location})
 
-    # TODO:
-    # {:ok, suggestion} =
-    #   Map.merge(user_data(), %{location: location})
-    #   |> Operations.ProcessLocationSuggestion.execute(user_data)
-    # send_message suggestion
+    case ProcessSuggestionByLocation.execute(params) do
+      {:ok, bonus_program} ->
+        send_message(~s"""
+        Лучший способ оплаты:
+        #{bonus_program.card_title} c #{bonus_program.percentage}%
+        """)
+
+      _ ->
+        send_message("К сожалению ничего не найдено, попробуйте уточнить ваш запрос")
+    end
   end
 end
