@@ -19,4 +19,4 @@ RUN mix do deps.get, deps.compile
 COPY . .
 
 RUN mix compile
-CMD ["mix", "run", "--halt"]
+CMD ["mix", "run", "--no-halt"]
