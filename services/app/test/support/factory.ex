@@ -7,7 +7,8 @@ defmodule WhatIsBetterToPay.Factory do
     Category,
     Place,
     BonusProgram,
-    SimilarCategory
+    SimilarCategory,
+    PlaceLocation
   }
 
   def user_factory do
@@ -48,6 +49,20 @@ defmodule WhatIsBetterToPay.Factory do
       category: build(:category),
       place: build(:place),
       user: build(:user)
+    }
+  end
+
+  def place_location_factory do
+    %PlaceLocation{
+      place: build(:place),
+      lng_lat_point: {
+        PlaceLocation.build_lng_lat_point({
+          # from -180 to 180
+          :rand.uniform(361) - 181,
+          # from -90 to 90
+          :rand.uniform(181) - 91
+        })
+      }
     }
   end
 end

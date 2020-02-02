@@ -1,4 +1,4 @@
-defmodule WhatIsBetterToPay.Search do
+defmodule WhatIsBetterToPay.Queries.FulltextSearch do
   @moduledoc false
 
   import Ecto.Query

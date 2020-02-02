@@ -1,4 +1,4 @@
-defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByTest do
+defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByPhraseTest do
   use WhatIsBetterToPay.RepoCase
   alias WhatIsBetterToPay.Operations.ProcessSuggestionByPhrase
 

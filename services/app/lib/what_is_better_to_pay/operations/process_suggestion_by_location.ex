@@ -1,17 +1,34 @@
 defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByLocation do
   @moduledoc false
   @search_radius 50
+  import WhatIsBetterToPay.Operations.ProcessSuggestion
   alias WhatIsBetterToPay.Operations.SaveGoogleMapsPlace
+  alias WhatIsBetterToPay.Queries.PlacesGeoSearch
 
-  def execute(%{username: username, location: location}) do
-    find_places_with_google_maps(location)
-    |> save_places
+  def execute(%{location: location} = params) do
+    place = geo_search(location)
+    user = find_user(params)
+    make_suggestion(user, place)
+  end
 
-    # TODO:
-    # 1. try to find nearest place by postgis in local db
-    # 2. unless place was found  call google maps api to detect nearest place
-    # 3. save found place, place location on step 2
-    # 4. call ProcessSuggestion.execute(place)
+  defp geo_search(%{latitude: lat, longitude: lng} = location) do
+    places = PlacesGeoSearch.run({lat, lng})
+
+    if Enum.empty?(places) do
+      find_places_with_google_maps(location)
+      |> save_places
+
+      places = PlacesGeoSearch.run({lat, lng})
+    end
+
+    case places do
+      [] ->
+        nil
+
+      _ ->
+        [place | _] = places
+        place
+    end
   end
 
   defp find_places_with_google_maps(%{longitude: longitude, latitude: latitude}) do
@@ -25,16 +42,19 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByLocation do
         rankby: "distance"
       )
 
-    require IEx
-    IEx.pry()
     places_data["results"]
   end
 
-  def save_places(places) do
+  defp save_places(places) do
     places
     |> Enum.map(fn place_data -> SaveGoogleMapsPlace.execute(place_data) end)
   end
 
-  def find_places(%{longitude: longitude, latitude: latitude}) do
+  defp make_suggestion(user, nil) when not is_nil(user) do
+    {:error, "place_not_found"}
+  end
+
+  defp make_suggestion(user, place) do
+    make_suggestion(user, nil, place)
   end
 end

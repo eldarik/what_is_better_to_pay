@@ -35,7 +35,7 @@ defmodule WhatIsBetterToPay.PlaceLocation do
     )
   end
 
-  defp build_lng_lat_point({longitude, latitude}) do
+  def build_lng_lat_point({longitude, latitude}) do
     %Geo.Point{coordinates: {longitude, latitude}, srid: 4326}
   end
 end
