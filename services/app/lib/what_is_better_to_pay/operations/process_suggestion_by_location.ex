@@ -38,8 +38,7 @@ defmodule WhatIsBetterToPay.Operations.ProcessSuggestionByLocation do
       "#{latitude},#{longitude}"
       |> google_maps_api.place_nearby(
         @search_radius,
-        language: "ru",
-        rankby: "distance"
+        [language: "ru", rankby: "distance"]
       )
 
     places_data["results"]
