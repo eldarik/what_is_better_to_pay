@@ -1,7 +1,7 @@
 ---
-ansible_user: root
-what_is_better_to_pay_run_user: root
-what_is_better_to_pay_run_user_home: /root
+ansible_user: ubuntu
+what_is_better_to_pay_run_user: ubuntu
+what_is_better_to_pay_run_user_home: /ubuntu/home
 
 what_is_better_to_pay_image_name: wibtp/what_is_better_to_pay
 what_is_better_to_pay_docker_network: what_is_better_to_pay_network
