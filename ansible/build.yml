@@ -18,10 +18,10 @@
 
     - name: build app image
       docker_image:
-        path: "../services/app/"
         name: "{{ what_is_better_to_pay_image_name }}:{{ image_tag }}"
         state: present
         push: yes
         build:
           dockerfile: Dockerfile.production
+          path: "../services/app/"
       tags: app
